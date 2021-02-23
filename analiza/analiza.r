@@ -35,11 +35,12 @@ napoved <- as.data.frame(predict(model, dodatek))
 
 
 dodatek[c(1,2, 3), 3] <- napoved
+tabela_r <- rbind(tabela_2, dodatek)
 
 
 
-graf_r <- ggplot(tabela_2, aes(x=Leto, y=Stevilo)) +
-  geom_line(color="blue") +
+graf_r <- ggplot(tabela_r, aes(x=Leto, y=Stevilo)) +
+  geom_line(color="black") +
   geom_point(color="black") +
   geom_point(data=dodatek, aes(x=Leto, y=Stevilo), color="red", size=2) +
   labs(title="Napoved gibanja števila vseh prenočitev za leta 2021-2023",
@@ -47,7 +48,8 @@ graf_r <- ggplot(tabela_2, aes(x=Leto, y=Stevilo)) +
     scale_x_continuous(limits=c(2000, 2023), breaks=seq(2000, 2024, 2)) +
   scale_y_continuous(limits=c(5,16),
                      breaks=seq(5, 16, 1)) +
-  theme_hc()
+  theme_hc() +
+  geom_smooth(method=lm, color="blue")
 
 
 
