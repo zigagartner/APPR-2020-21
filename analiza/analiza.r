@@ -50,7 +50,7 @@ graf_r <- ggplot(tabela_2, aes(x=Leto, y=Stevilo)) +
   scale_y_continuous(limits=c(4, 17),
                      breaks=seq(5, 20, 1)) +
   theme_hc() +
-  geom_smooth(method=lm, formula=y~x, fullrange=TRUE, color="blue", level=0.95)
+  geom_smooth(method=lm, formula=y~x, fullrange=TRUE, color="blue")
 
 
 
