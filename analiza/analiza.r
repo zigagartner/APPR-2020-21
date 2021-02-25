@@ -27,9 +27,10 @@ dodatek <- data.frame(Tip=c("Skupaj", "Skupaj","Skupaj"),Leto=c(2021, 2022, 2023
                       Stevilo=c(0,0, 0))
 
 tabela_2 <- vse.prenocitve %>% filter(vse.prenocitve$Tip == "Skupaj")
+tabela_2 <- tabela_2[c(13:33),]
 tabela_2$Stevilo <- tabela_2$Stevilo / 1000000 
 
-model <- lm(data=tabela_2, Stevilo~Leto + I(Leto)^2 + I(Leto)^3)
+model <- lm(data=tabela_2, Stevilo~Leto)
 napoved <- as.data.frame(predict(model, dodatek))
 
 
@@ -39,17 +40,17 @@ tabela_r <- rbind(tabela_2, dodatek)
 
 
 
-graf_r <- ggplot(tabela_r, aes(x=Leto, y=Stevilo)) +
+graf_r <- ggplot(tabela_2, aes(x=Leto, y=Stevilo)) +
   geom_line(color="black") +
   geom_point(color="black") +
-  geom_point(data=dodatek, aes(x=Leto, y=Stevilo), color="red", size=2) +
+  geom_point(data=dodatek, aes(x=Leto, y=Stevilo), color="red", size=3) +
   labs(title="Napoved gibanja števila vseh prenočitev za leta 2021-2023",
        y="Število prenočitev (milijoni)", x="Leto") +
     scale_x_continuous(limits=c(2000, 2023), breaks=seq(2000, 2024, 2)) +
-  scale_y_continuous(limits=c(5,16),
-                     breaks=seq(5, 16, 1)) +
+  scale_y_continuous(limits=c(4, 17),
+                     breaks=seq(5, 20, 1)) +
   theme_hc() +
-  geom_smooth(method=lm, color="blue")
+  geom_smooth(method=lm, formula=y~x, fullrange=TRUE, color="blue", level=0.95)
 
 
 

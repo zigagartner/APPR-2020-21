@@ -217,7 +217,7 @@ graf_r
 Graf prikazuje napoved gibanja števila vseh prenočitev za leta 2021, 2022 in 2023.
 Opazimo, da model za naslednja tri leta napoveduje rast števila vseh prenocitev,
 po hudem upadu, ki se je zgodil leta 2020. Na grafu napoved števila prenočitev
-prikazujejo rdeče točke.
+prikazujejo rdeče točke, trendno črto pa modra premica.
 
 
 
